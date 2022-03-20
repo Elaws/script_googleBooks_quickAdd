@@ -107,8 +107,8 @@ async function start(params, settings) {
 		genre: `${selectedBook.categories ? selectedBook.categories : "N/A"}`,
 		// A rating for the read book, /10.
 		rating: myRating,
-		// The global average review /5
-		avRating: `${selectedBook.averageRating ? selectedBook.averageRating : 0 }`,
+		// The global average review * 2 to get /10
+		avRating: `${selectedBook.averageRating ? selectedBook.averageRating * 2 : 0 }`,
 		// For mature audiences or not?
 		mature: `${selectedBook.maturityRating ? selectedBook.maturityRating : "NA" }`,
 		// Pages reported in book
