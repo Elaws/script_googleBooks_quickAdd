@@ -116,11 +116,16 @@ Cover:: {{VALUE:thumbnail}}
 ISBN10:: {{VALUE:isbn10}}
 ISBN13:: {{VALUE:isbn13}}
 URL:: [Goodreads]({{VALUE:goodreadsURL}})
+Genre:: {{VALUE:genre}}
+PageCount:: {{VALUE:pageCount}}
+AverageRating:: {{VALUE:avRating}}
 Rating:: {{VALUE:rating}}
+Maturity:: {{VALUE:mature}}
 Read:: {{VALUE:read}}
 Recommender:: {{VALUE:recommender}}
 Date:: {{DATE}}
 Comment:: {{VALUE:comment}}
+BookDescription:: {{VALUE: bookDesc}}
 
 ```
 
@@ -136,11 +141,11 @@ Author,
 publish-date AS "Publish date",
 ("![coverImg|100](" + Cover + ")") as Cover,
 rating AS "Rating",
-genre AS "Genre",
-avRating AS "Average Rating",
-mature AS "Maturity Rating",
-pageCount AS "Page Count",
-bookDesc AS "Book Description",
+AverageRating AS "Average Rating",
+Maturity AS "Maturity Rating",
+PageCount AS "Page Count",
+BookDescription AS "Book Description",
+Genre,
 Recommender,
 Comment,
 Date,
