@@ -9,18 +9,18 @@ const API_KEY = "Google Books API Key"
 const GOODREADS_URL = "https://www.goodreads.com/search?qid=&q="
 
 module.exports = {
-  entry: start,
-  settings: {
-    name: "Books script",
-    author: "Elaws",
-    options: {
-      [API_KEY]: {
-        type: "text",
-        defaultValue: "",
-        placeholder: "Google Books API Key",
-      }
-    },
-  },
+	entry: start,
+	settings: {
+		name: "Books script",
+		author: "Elaws",
+		options: {
+			[API_KEY]: {
+				type: "text",
+				defaultValue: "",
+				placeholder: "Google Books API Key",
+			}
+		},
+	},
 };
 
 let QuickAdd;
@@ -94,6 +94,7 @@ async function start(params, settings) {
 		authors: formatList(selectedBook.authors),
 		isbn10: `${ISBN.ISBN10 ? ISBN.ISBN10 : " "}`,
 		isbn13: `${ISBN.ISBN13 ? ISBN.ISBN13 : " "}`,
+
 		// An URL to the GoodReads page of the book using its ISBN. 
 		// May fail if ISBN returned by Google Books is not in Goodreads database.
 		goodreadsURL: `${ISBN.ISBN13 ? GOODREADS_URL + ISBN.ISBN13 : (ISBN.ISBN10 ? GOODREADS_URL + ISBN.ISBN10 : " ")}`,
@@ -102,8 +103,18 @@ async function start(params, settings) {
 		release: `${selectedBook.publishedDate ? (new Date((selectedBook.publishedDate))).getFullYear() : " "}`,
 		// Squares of different color to tag Obsidian's note, depending if book has already been read or not.
 		tag: `${isRead ? "\u{0001F7E7}" : "\u{0001F7E5}"}`,
+		// Main Category reported for the book
+		genre: `${selectedBook.categories ? selectedBook.categories : "N/A"}`,
 		// A rating for the read book, /10.
 		rating: myRating,
+		// The global average review * 2 to get /10
+		avRating: `${selectedBook.averageRating ? selectedBook.averageRating * 2 : 0 }`,
+		// For mature audiences or not?
+		mature: `${selectedBook.maturityRating ? selectedBook.maturityRating : "NA" }`,
+		// Pages reported in book
+		pageCount: `${selectedBook.pageCount ? selectedBook.pageCount : 0 }`,
+		// blurb
+		bookDesc: `${selectedBook.description ? selectedBook.description : "No Description Reported" }`,
 		// Is the book already read ? 1 if yes, 0 otherwise.
 		read: `${isRead ? "1" : "0"}`,
 		// Who recommended the book to me?
@@ -157,13 +168,13 @@ async function getByQuery(query) {
 
 	if(searchResults.error)
     {
-      notice("Request failed");
-      throw new Error("Request failed");
+		notice("Request failed");
+		throw new Error("Request failed");
     }
 
     if (searchResults.totalItems == 0) {
-      notice("No results found.");
-      throw new Error("No results found.");
+		notice("No results found.");
+		throw new Error("No results found.");
     }
 
     return searchResults.items;
@@ -185,7 +196,7 @@ async function apiGet(query) {
 	let finalURL = new URL(API_URL);
 
 	finalURL.searchParams.append("q", query);
-  	finalURL.searchParams.append("key", Settings[API_KEY]);
+	finalURL.searchParams.append("key", Settings[API_KEY]);
 
 	log(finalURL.href);
 

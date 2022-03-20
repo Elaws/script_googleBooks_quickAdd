@@ -116,11 +116,16 @@ Cover:: {{VALUE:thumbnail}}
 ISBN10:: {{VALUE:isbn10}}
 ISBN13:: {{VALUE:isbn13}}
 URL:: [Goodreads]({{VALUE:goodreadsURL}})
+Genre:: {{VALUE:genre}}
+PageCount:: {{VALUE:pageCount}}
+AverageRating:: {{VALUE:avRating}}
 Rating:: {{VALUE:rating}}
+Maturity:: {{VALUE:mature}}
 Read:: {{VALUE:read}}
 Recommender:: {{VALUE:recommender}}
 Date:: {{DATE}}
 Comment:: {{VALUE:comment}}
+BookDescription:: {{VALUE: bookDesc}}
 
 ```
 
@@ -136,6 +141,11 @@ Author,
 publish-date AS "Publish date",
 ("![coverImg|100](" + Cover + ")") as Cover,
 rating AS "Rating",
+AverageRating AS "Average Rating",
+Maturity AS "Maturity Rating",
+PageCount AS "Page Count",
+BookDescription AS "Book Description",
+Genre,
 Recommender,
 Comment,
 Date,
@@ -171,6 +181,16 @@ Please find here a definition of the possible variables to be used in your templ
 `goodreadsURL` : An URL that uses the ISBN to request Goodreads book page. This may fail if ISBN returned by Google is not in the database of Goodreads.
 
 `rating` : Your book rating, /10.
+
+`avRating` : Average rating from all ratings in API.
+
+`genre` : The reported genre of the book.
+
+`pageCount` : Total number of pages in this book.
+
+`mature` : Is this book rated mature or not?
+
+`bookDesc` : What is the blurb of the book?
 
 `read` : If you read the book, this equals 1, otherwise 0 (this helps to filter dataview query).
 
