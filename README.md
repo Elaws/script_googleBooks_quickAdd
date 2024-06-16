@@ -5,7 +5,7 @@
 
 If this script helped you and you wish to contribute :)
 
-<a href="https://www.buymeacoffee.com/elawsdev4" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P5N9VNZ)
 
 ## Description
 
